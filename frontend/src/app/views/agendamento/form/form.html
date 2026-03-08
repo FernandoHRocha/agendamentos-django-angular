@@ -1,0 +1,99 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      @if (editMode) {
+        <h2>Editar Agendamento</h2>
+      } @else {
+        <h2>Novo Agendamento</h2>
+      }
+    </mat-card-title>
+  </mat-card-header>
+
+  <form [formGroup]="agendamentoForm" (ngSubmit)="submitForm()">
+    <mat-card-content>
+
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Título do compromisso</mat-label>
+          <input matInput formControlName="titulo" placeholder="Ex: Alinhamento com Marketing">
+          @if (agendamentoForm.get('titulo')?.hasError('required')) {
+            <mat-error>O título é obrigatório</mat-error>
+          } @else if (agendamentoForm.get('titulo')?.hasError('minlength')) {
+            <mat-error>Precisa conter no mínimo 3 caracteres</mat-error>
+          } @else if (agendamentoForm.get('titulo')?.hasError('serverError')) {
+            <mat-error>{{ agendamentoForm.get('titulo')?.getError('serverError') }}</mat-error>
+          }
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Escolha uma data</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="data" [min]="today">
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          @if (agendamentoForm.get('data')?.hasError('required')) {
+            <mat-error>A data é obrigatória</mat-error>
+          } @else if (agendamentoForm.get('data')?.hasError('serverError')) {
+            <mat-error>{{ agendamentoForm.get('data')?.getError('serverError') }}</mat-error>
+          }
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Horário</mat-label>
+          <input matInput type="time" formControlName="horario">
+          @if (agendamentoForm.get('horario')?.hasError('required')) {
+            <mat-error>O horário é obrigatório</mat-error>
+          } @else if (agendamentoForm.get('horario')?.hasError(futureDateTimeErrorKey)) {
+            <mat-error>O horário deve ser posterior a data atual</mat-error>
+          } @else if (agendamentoForm.get('horario')?.hasError('serverError')) {
+            <mat-error>{{ agendamentoForm.get('horario')?.getError('serverError') }}</mat-error>
+          }
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Estado da Agenda</mat-label>
+          <mat-select formControlName="status">
+            @for (status of statusOptions; track status.value) {
+              <mat-option [value]="status.value">
+                {{ status.label }}
+              </mat-option>
+            }
+          </mat-select>
+          @if (agendamentoForm.get('status')?.hasError('required')) {
+            <mat-error>O Estado é obrigatório</mat-error>
+          } @else if (agendamentoForm.get('status')?.hasError('serverError')) {
+            <mat-error>{{ agendamentoForm.get('status')?.getError('serverError') }}</mat-error>
+          }
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Descrição / Observações</mat-label>
+          <textarea matInput formControlName="descricao" rows="4"></textarea>
+          @if (agendamentoForm.get('descricao')?.hasError('serverError')) {
+            <mat-error>{{ agendamentoForm.get('descricao')?.getError('serverError') }}</mat-error>
+          }
+        </mat-form-field>
+      </p>
+
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button type="button" matButton="filled" (click)="router.navigate(['/agendamento'])">Voltar</button>
+      <button type="submit" matButton="filled" [disabled]="agendamentoForm.invalid">
+        @if (editMode) {
+          Salvar
+        } @else {
+          Criar Agenda
+        }
+      </button>
+    </mat-card-actions>
+  </form>
+
+</mat-card>

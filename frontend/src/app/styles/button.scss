@@ -1,0 +1,76 @@
+@use '@angular/material' as mat;
+
+.primary {
+  @include mat.icon-overrides(
+    (
+      color: var(--mat-sys-primary),
+    )
+  );
+  &.mat-mdc-filled-button mat-icon {
+     color: var(--mat-sys-on-primary);
+  }
+}
+
+.accent {
+  @include mat.button-overrides(
+    (
+      filled-container-color: var(--mat-sys-tertiary),
+      filled-label-text-color: var(--mat-sys-on-tertiary),
+      outlined-label-text-color: var(--mat-sys-tertiary),
+      protected-label-text-color: var(--mat-sys-tertiary),
+      text-label-text-color: var(--mat-sys-tertiary),
+      text-state-layer-color: var(--mat-sys-tertiary),
+    )
+  );
+
+    &.mat-icon, .mat-icon.accent {
+    @include mat.icon-overrides(
+      (
+        color: var(--mat-sys-tertiary),
+      )
+    );
+  }
+}
+
+.secondary {
+  @include mat.button-overrides(
+    (
+      filled-container-color: var(--mat-sys-surface-dim),
+      filled-label-text-color: var(--mat-sys-on-surface),
+      outlined-label-text-color: var(--mat-sys-surface-dim),
+      protected-label-text-color: var(--mat-sys-surface-dim),
+      text-label-text-color: var(--mat-sys-surface-dim),
+      text-state-layer-color: var(--mat-sys-surface-dim),
+    )
+  );
+  @include mat.icon-overrides(
+    (
+      color: var(--mat-sys-surface-dim),
+    )
+  );
+
+  &.mat-mdc-filled-button mat-icon {
+     color: var(--mat-sys-on-surface);
+  }
+}
+
+.error {
+  @include mat.button-overrides(
+    (
+      filled-container-color: var(--mat-sys-error),
+      filled-label-text-color: var(--mat-sys-on-error),
+      outlined-label-text-color: var(--mat-sys-error),
+      protected-label-text-color: var(--mat-sys-error),
+      text-label-text-color: var(--mat-sys-error),
+      text-state-layer-color: var(--mat-sys-error),
+    )
+  );
+
+  &.mat-icon, .mat-icon.error {
+    @include mat.icon-overrides(
+      (
+        color: var(--mat-sys-error),
+      )
+    );
+  }
+}

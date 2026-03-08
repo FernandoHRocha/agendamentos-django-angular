@@ -1,0 +1,46 @@
+mat-toolbar {
+  background-color: transparent;
+}
+
+mat-toolbar-row {
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  gap: 4px;
+  flex-wrap: wrap;
+  height: fit-content;
+  padding: 4px 0;
+
+  a {
+    flex-grow: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  mat-toolbar-row {
+    flex-direction: column;
+  }
+
+  a {
+    width: 100%;
+  }
+}
+
+#content-section {
+  min-height: 100vh;
+	margin: auto;
+	width: clamp(300px, 98vw, 1440px);
+	box-sizing: border-box;
+}
+
+.content-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.mat-mdc-card-actions {
+  display: flex;
+}

@@ -1,0 +1,21 @@
+@use '@angular/material' as mat;
+
+.toast-success {
+  @include mat.snack-bar-overrides (
+    (
+      container-color: var(--mat-sys-primary),
+      button-color: var(--mat-sys-on-primary),
+      supporting-text-color: var(--mat-sys-on-primary),
+    )
+  )
+}
+
+.toast-error {
+    @include mat.snack-bar-overrides (
+    (
+      container-color: var(--mat-sys-error),
+      button-color: var(--mat-sys-on-error),
+      supporting-text-color: var(--mat-sys-on-error),
+    )
+  )
+}

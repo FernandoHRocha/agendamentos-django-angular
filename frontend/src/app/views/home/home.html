@@ -1,0 +1,54 @@
+<div>
+	<section>
+		<h1>Bem-vindo ao Gerenciador de Compromissos</h1>
+		<p>Uma solução para o controle e organização de sua agenda.</p>
+	</section>
+
+	<div>
+		<mat-card>
+			<mat-card-header>
+				<mat-card-title>Listagem Dinâmica</mat-card-title>
+			</mat-card-header>
+			<mat-card-content>
+				<p>Visualize todos os seus agendamentos em tempo real com suporte a filtros e ordenação.</p>
+				<a matButton="filled" routerLink="/agendamento">
+					<mat-icon>view_list</mat-icon>
+					Visualizar
+				</a>
+			</mat-card-content>
+		</mat-card>
+
+		<mat-card>
+			<mat-card-header>
+				<mat-card-title>Novo Agendamento</mat-card-title>
+			</mat-card-header>
+			<mat-card-content>
+				<p>Por questões de simplicidade todos os agendamentos são realizados com o fuso horário GMT-3.</p>
+				<button matButton="filled" class="accent" routerLink="/agendamento/criar">
+					<mat-icon>add_circle</mat-icon>
+					Criar Agendamento
+				</button>
+			</mat-card-content>
+		</mat-card>
+
+		<mat-card>
+			<mat-card-header>
+				<mat-icon mat-card-avatar class="accent">edit</mat-icon>
+				<mat-card-title>Edição Rápida</mat-card-title>
+			</mat-card-header>
+			<mat-card-content>
+				<p>Flexibilidade para ajustar detalhes de agendamentos existentes com praticidade.</p>
+			</mat-card-content>
+		</mat-card>
+
+		<mat-card>
+			<mat-card-header>
+				<mat-icon mat-card-avatar class="error">delete_sweep</mat-icon>
+				<mat-card-title>Gestão de Cancelamentos</mat-card-title>
+			</mat-card-header>
+			<mat-card-content>
+				<p>Remova registros de forma segura com confirmação de segurança.</p>
+			</mat-card-content>
+		</mat-card>
+	</div>
+</div>

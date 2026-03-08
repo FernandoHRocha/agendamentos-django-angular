@@ -1,0 +1,45 @@
+<div>
+  @if (service.loading()) {
+  <app-loading-bar></app-loading-bar>
+  } @else {
+  <div
+    style="display: flex; width: 100%; align-items: center; justify-content: start; gap: 12px; margin-bottom: 12px; flex-wrap: wrap;">
+    <button matButton="filled" class="secondary" type="button">
+      <mat-icon style="color:#4caf50;">check_circle</mat-icon>
+      <span>Confirmado</span>
+    </button>
+    <button matButton="filled" class="secondary" type="button">
+      <mat-icon style="color:#0048f6;">schedule</mat-icon>
+      <span>Pendente</span>
+    </button>
+    <button matButton="filled" class="secondary" type="button">
+      <mat-icon style="color:#f44336;">schedule</mat-icon>
+      <span>Cancelado</span>
+    </button>
+  </div>
+  <mat-accordion>
+    @for (agendamento of service.agendamentos(); track agendamento.id) {
+      <app-agendamento-list-item
+        [agendamento]="agendamento"
+        (onExcluir)="excluir(agendamento.id!)">
+      </app-agendamento-list-item>
+    } @empty {
+    <mat-card apperance="outlined">
+      <mat-card-header>
+        <mat-icon mat-card-avatar class="error">event_busy</mat-icon>
+        <mat-card-title>
+          Você ainda não possui agendamentos cadastrados.
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-actions>
+
+        <a matButton="elevated" routerLink="/agendamento/criar">
+          <mat-icon>add_circle_outline</mat-icon>
+          Novo Agendamento
+        </a>
+      </mat-card-actions>
+    </mat-card>
+    }
+  </mat-accordion>
+  }
+</div>

@@ -1,0 +1,33 @@
+<mat-expansion-panel [class.confirmed]="agendamento().status === 'confirmed'">
+
+  <mat-expansion-panel-header style="min-height: 80px; height: fit-content;">
+    <mat-panel-title>
+      <mat-icon style="margin-right: 12px; min-width: 24px;"
+        [ngStyle]="{'color': agendamento().status === 'confirmed' ? '#4caf50' : agendamento().status === 'pending' ? '#0048f6' : '#f44336'}">
+        {{ agendamento().status === 'confirmed' ? 'check_circle' : 'schedule' }}
+      </mat-icon>
+      <div>
+        <h4 style="margin: 0;">{{ agendamento().titulo }}</h4>
+        <span>
+          {{ agendamento().data | date:'dd/MM/yyyy' }} às {{ agendamento().horario | slice:0:5 }}
+        </span>
+      </div>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <div>
+    <p>
+      {{ agendamento().descricao || 'Sem descrição detalhada.' }}
+    </p>
+
+    <mat-action-row>
+      <button matButton="filled" class="accent" [routerLink]="['/agendamento/editar', agendamento().id]">
+        <mat-icon>edit</mat-icon> EDITAR
+      </button>
+      <button matButton="filled" class="error" (click)="excluir(agendamento().id!)">
+        <mat-icon>delete</mat-icon> EXCLUIR
+      </button>
+    </mat-action-row>
+  </div>
+
+</mat-expansion-panel>
